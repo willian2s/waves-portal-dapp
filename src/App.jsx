@@ -73,27 +73,10 @@ function App() {
       if (accounts.length !== 0) {
         const account = accounts[0];
         console.log(`Found authorized account: ${account}`);
-        getAllWaves();
         setCurrentAccount(account);
       } else {
         console.log("Not found authorized account");
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const connectWallet = async () => {
-    try {
-      if (!ethereum) {
-        onOpen(true);
-        return;
-      }
-
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
     }
@@ -115,6 +98,24 @@ function App() {
       } else {
         console.log("Ethereum object doesn't exist!");
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const connectWallet = async () => {
+    try {
+      if (!ethereum) {
+        onOpen(true);
+        return;
+      }
+
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setCurrentAccount(accounts[0]);
+      getAllWaves();
+      getTotalWaves();
     } catch (error) {
       console.log(error);
     }
