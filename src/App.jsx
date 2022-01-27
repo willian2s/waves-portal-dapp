@@ -74,6 +74,7 @@ function App() {
         const account = accounts[0];
         console.log(`Found authorized account: ${account}`);
         setCurrentAccount(account);
+        getAllWaves();
       } else {
         console.log("Not found authorized account");
       }
